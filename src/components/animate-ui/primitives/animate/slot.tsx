@@ -1,8 +1,8 @@
 'use client'
 
 import * as React from 'react'
-import {  isMotionComponent, motion } from 'motion/react'
-import type {HTMLMotionProps} from 'motion/react';
+import { isMotionComponent, motion } from 'motion/react'
+import type { HTMLMotionProps } from 'motion/react'
 import { cn } from '@/lib/utils'
 
 type AnyProps = Record<string, unknown>
@@ -17,7 +17,6 @@ type WithAsChild<Base extends object> =
   | (Base & { asChild?: false | undefined })
 
 type SlotProps<T extends HTMLElement = HTMLElement> = {
-   
   children?: any
 } & DOMMotionProps<T>
 
@@ -30,7 +29,7 @@ function mergeRefs<T>(
       if (typeof ref === 'function') {
         ref(node)
       } else {
-        ;(ref).current = node
+        ref.current = node
       }
     })
   }

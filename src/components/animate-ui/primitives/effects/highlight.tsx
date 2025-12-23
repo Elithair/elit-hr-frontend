@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import type { Transition} from 'motion/react';
+import type { Transition } from 'motion/react'
 
 import { cn } from '@/lib/utils'
 
@@ -37,7 +37,6 @@ type HighlightContextType<T extends string> = {
 }
 
 const HighlightContext = React.createContext<
-   
   HighlightContextType<any> | undefined
 >(undefined)
 

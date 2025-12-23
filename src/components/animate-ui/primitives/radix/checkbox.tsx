@@ -2,8 +2,8 @@
 
 import * as React from 'react'
 import { Checkbox as CheckboxPrimitive } from 'radix-ui'
-import {  motion } from 'motion/react'
-import type {HTMLMotionProps, SVGMotionProps} from 'motion/react';
+import { motion } from 'motion/react'
+import type { HTMLMotionProps, SVGMotionProps } from 'motion/react'
 
 import { getStrictContext } from '@/lib/get-strict-context'
 import { useControlledState } from '@/hooks/use-controlled-state'

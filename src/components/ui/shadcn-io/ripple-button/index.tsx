@@ -1,10 +1,10 @@
 'use client'
 
 import * as React from 'react'
-import {   motion } from 'motion/react'
-import {  cva } from 'class-variance-authority'
-import type {HTMLMotionProps, Transition} from 'motion/react';
-import type {VariantProps} from 'class-variance-authority';
+import { motion } from 'motion/react'
+import { cva } from 'class-variance-authority'
+import type { HTMLMotionProps, Transition } from 'motion/react'
+import type { VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/lib/utils'
 

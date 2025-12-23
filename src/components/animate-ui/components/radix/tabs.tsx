@@ -1,19 +1,18 @@
-import * as React from 'react'
-
-import type {TabsContentProps as TabsContentPrimitiveProps, TabsContentsProps as TabsContentsPrimitiveProps, TabsListProps as TabsListPrimitiveProps, TabsProps as TabsPrimitiveProps, TabsTriggerProps as TabsTriggerPrimitiveProps} from '@/components/animate-ui/primitives/radix/tabs';
+import type {
+  TabsContentProps as TabsContentPrimitiveProps,
+  TabsContentsProps as TabsContentsPrimitiveProps,
+  TabsListProps as TabsListPrimitiveProps,
+  TabsProps as TabsPrimitiveProps,
+  TabsTriggerProps as TabsTriggerPrimitiveProps,
+} from '@/components/animate-ui/primitives/radix/tabs'
 import {
   TabsContent as TabsContentPrimitive,
-  
   TabsContents as TabsContentsPrimitive,
-  
   TabsHighlightItem as TabsHighlightItemPrimitive,
   TabsHighlight as TabsHighlightPrimitive,
   TabsList as TabsListPrimitive,
-  
   Tabs as TabsPrimitive,
-  
-  TabsTrigger as TabsTriggerPrimitive
-  
+  TabsTrigger as TabsTriggerPrimitive,
 } from '@/components/animate-ui/primitives/radix/tabs'
 import { cn } from '@/lib/utils'
 

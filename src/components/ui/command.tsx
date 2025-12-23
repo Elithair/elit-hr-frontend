@@ -3,8 +3,8 @@
 import React from 'react'
 import { Command as CommandPrimitive } from 'cmdk'
 import { Check, Search } from 'lucide-react'
-import type {DialogProps} from '@radix-ui/react-dialog';
-import type { LucideIcon} from 'lucide-react';
+import type { DialogProps } from '@radix-ui/react-dialog'
+import type { LucideIcon } from 'lucide-react'
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
 

@@ -9,6 +9,8 @@ import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
+import { useNavigate } from '@tanstack/react-router'
+import z from 'zod/v3'
 import type { FieldValues, SubmitHandler } from 'react-hook-form'
 import type { Login } from '../schemas'
 import {
@@ -28,26 +30,25 @@ import {
 } from '@/components/ui/field'
 import { Input, InputWrapper } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import z from 'zod/v3'
+import { useAuth } from '@/providers/mock-auth-provider'
 
 export default function AuthScreen() {
   const [showPassword, setShowPassword] = useState(false)
-  const prevErrorRef = useRef<string | null>(null)
   const prevAuthRef = useRef<boolean>(false)
-  const isLoading = false // Replace with actual loading state
-  const errors: Array<string> = []
-  const [isAuthenticated, signIn] = useState<any>(/* your auth hook here */)
+  const prevErrorRef = useRef<string | null>(null)
+  const { isLoading, signIn, isAuthenticated, errors } = useAuth()
+  const navigate = useNavigate()
 
   const form = useForm<Login>({
     // @ts-expect-error - zodResolver is not typed correctly, dependency error -- works fine
     resolver: zodResolver(
-		//Test schema
-		z.object({
-			email: z.string().optional(),
-			password: z.string().optional(),
-			rememberMyEmail: z.boolean().optional().default(false),
-		})
-	),
+      // Test schema
+      z.object({
+        email: z.string().optional(),
+        password: z.string().optional(),
+        rememberMyEmail: z.boolean().optional().default(false),
+      }),
+    ),
     defaultValues: {
       email: '',
       password: '',
@@ -77,12 +78,26 @@ export default function AuthScreen() {
         icon: <CheckCircleIcon className="w-5 h-5" />,
         richColors: true,
       })
+      // Redirect to dashboard after successful sign in
+      setTimeout(() => {
+        navigate({ to: '/dashboard' })
+      }, 1000)
     }
     prevAuthRef.current = isAuthenticated
-  }, [isAuthenticated])
+  }, [isAuthenticated, navigate])
 
-  const onSubmit: SubmitHandler<FieldValues> = async () => {
-    signIn(true)
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      await signIn(data.email || '')
+    } catch (error) {
+      toast.error('Sign in failed', {
+        description:
+          error instanceof Error ? error.message : 'An error occurred',
+        icon: <ExclamationTriangleIcon className="w-5 h-5" />,
+        position: 'bottom-center',
+        richColors: true,
+      })
+    }
   }
 
   return (
@@ -161,19 +176,19 @@ export default function AuthScreen() {
               </FieldGroup>
             </form>
           </CardContent>
-		  <CardFooter>
-			<Button
+          <CardFooter>
+            <Button
               type="submit"
               form="sign-in"
               className="w-full"
-              disabled={false}
+              disabled={isLoading}
               startIcon={
                 isLoading ? <Loader2 className="animate-spin" /> : null
               }
             >
               {isLoading ? 'Signing in...' : 'Sign in'}
             </Button>
-		  </CardFooter>
+          </CardFooter>
         </Card>
       </div>
     </div>

@@ -7,9 +7,9 @@ import {
   useMemo,
   useState,
 } from 'react'
-import {  cva } from 'class-variance-authority'
+import { cva } from 'class-variance-authority'
 import { AlertCircle, Check, Plus, X } from 'lucide-react'
-import type {VariantProps} from 'class-variance-authority';
+import type { VariantProps } from 'class-variance-authority'
 import type React from 'react'
 import {
   Command,
@@ -956,8 +956,10 @@ const createOperatorsFromI18n = (
 })
 
 // Default operators for different field types (using default i18n)
-export const DEFAULT_OPERATORS: Record<string, Array<FilterOperator>> =
-  createOperatorsFromI18n(DEFAULT_I18N)
+export const DEFAULT_OPERATORS: Record<
+  string,
+  Array<FilterOperator>
+> = createOperatorsFromI18n(DEFAULT_I18N)
 
 // Helper function to get operators for a field
 const getOperatorsForField = <T = unknown,>(
@@ -1072,7 +1074,7 @@ function SelectOptionsPopover<T = unknown>({
 
   const isMultiSelect = field.type === 'multiselect' || values.length > 1
   const effectiveValues =
-    (field.value !== undefined ? (field.value) : values) || []
+    (field.value !== undefined ? field.value : values) || []
   const selectedOptions =
     field.options?.filter((opt) => effectiveValues.includes(opt.value)) || []
   const unselectedOptions =
@@ -1261,9 +1263,7 @@ function SelectOptionsPopover<T = unknown>({
                     className="group flex gap-2 items-center"
                     onSelect={() => {
                       if (isMultiSelect) {
-                        onChange(
-                          values.filter((v) => v !== option.value),
-                        )
+                        onChange(values.filter((v) => v !== option.value))
                       } else {
                         onChange([] as Array<T>)
                       }
@@ -1295,7 +1295,10 @@ function SelectOptionsPopover<T = unknown>({
                       value={option.label}
                       onSelect={() => {
                         if (isMultiSelect) {
-                          const newValues = [...values, option.value] as Array<T>
+                          const newValues = [
+                            ...values,
+                            option.value,
+                          ] as Array<T>
                           if (
                             field.maxSelections &&
                             newValues.length > field.maxSelections
@@ -1446,7 +1449,9 @@ function FilterValueSelector<T = unknown>({
           <FilterInput
             type="datetime-local"
             value={startDateTime}
-            onChange={(e) => onChange([e.target.value, endDateTime] as Array<T>)}
+            onChange={(e) =>
+              onChange([e.target.value, endDateTime] as Array<T>)
+            }
             onInputChange={field.onInputChange}
             className={cn('w-36', field.className)}
             field={field}
@@ -1463,7 +1468,9 @@ function FilterValueSelector<T = unknown>({
           <FilterInput
             type="datetime-local"
             value={endDateTime}
-            onChange={(e) => onChange([startDateTime, e.target.value] as Array<T>)}
+            onChange={(e) =>
+              onChange([startDateTime, e.target.value] as Array<T>)
+            }
             onInputChange={field.onInputChange}
             className={cn('w-36', field.className)}
             field={field}
@@ -1723,9 +1730,7 @@ function FilterValueSelector<T = unknown>({
                     className="group flex gap-2 items-center"
                     onSelect={() => {
                       if (isMultiSelect) {
-                        onChange(
-                          values.filter((v) => v !== option.value),
-                        )
+                        onChange(values.filter((v) => v !== option.value))
                       } else {
                         onChange([] as Array<T>)
                       }
@@ -1754,7 +1759,10 @@ function FilterValueSelector<T = unknown>({
                       value={option.label}
                       onSelect={() => {
                         if (isMultiSelect) {
-                          const newValues = [...values, option.value] as Array<T>
+                          const newValues = [
+                            ...values,
+                            option.value,
+                          ] as Array<T>
                           if (
                             field.maxSelections &&
                             newValues.length > field.maxSelections
@@ -1944,7 +1952,9 @@ export function Filters<T = unknown>({
   const [addFilterOpen, setAddFilterOpen] = useState(false)
   const [selectedFieldForOptions, setSelectedFieldForOptions] =
     useState<FilterFieldConfig<T> | null>(null)
-  const [tempSelectedValues, setTempSelectedValues] = useState<Array<unknown>>([])
+  const [tempSelectedValues, setTempSelectedValues] = useState<Array<unknown>>(
+    [],
+  )
 
   // Merge provided i18n with defaults
   const mergedI18n: FilterI18nConfig = {

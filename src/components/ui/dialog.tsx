@@ -4,7 +4,7 @@ import * as React from 'react'
 import { cva } from 'class-variance-authority'
 import { X } from 'lucide-react'
 import { Dialog as DialogPrimitive } from 'radix-ui'
-import type { VariantProps } from 'class-variance-authority';
+import type { VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const dialogContentVariants = cva(

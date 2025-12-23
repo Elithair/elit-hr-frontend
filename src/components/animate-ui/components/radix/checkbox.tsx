@@ -1,12 +1,9 @@
-import * as React from 'react'
-
-import {  cva } from 'class-variance-authority'
-import type {VariantProps} from 'class-variance-authority';
-import type {CheckboxProps as CheckboxPrimitiveProps} from '@/components/animate-ui/primitives/radix/checkbox';
+import { cva } from 'class-variance-authority'
+import type { VariantProps } from 'class-variance-authority'
+import type { CheckboxProps as CheckboxPrimitiveProps } from '@/components/animate-ui/primitives/radix/checkbox'
 import {
   CheckboxIndicator as CheckboxIndicatorPrimitive,
-  Checkbox as CheckboxPrimitive
-  
+  Checkbox as CheckboxPrimitive,
 } from '@/components/animate-ui/primitives/radix/checkbox'
 import { cn } from '@/lib/utils'
 
