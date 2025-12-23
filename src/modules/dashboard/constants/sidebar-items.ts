@@ -28,7 +28,7 @@ export const SIDEBAR_ITEMS = [
   },
   {
     title: 'Employees',
-    url: '/',
+    url: '/dashboard/employees/',
     icon: UsersIcon,
     requirement: ['manager', 'employee'],
   },
